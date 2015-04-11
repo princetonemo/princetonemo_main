@@ -3,6 +3,7 @@ from django.db import models
 class Department(models.Model):
 	name = models.CharField(max_length=60, blank=True)
 	abbr = models.CharField(max_length=3)
+	num_students = models.IntegerField(default=0)
 
 	angry_avg = models.FloatField(default=0., blank=True)
 	sad_avg = models.FloatField(default=0., blank=True)

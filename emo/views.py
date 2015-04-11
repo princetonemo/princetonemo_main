@@ -10,10 +10,19 @@ def index(request):
 		if form.is_valid():
 			data = form.cleaned_data
 			print(data['query'])
-		else
+			return department(request, data)
+		else:
 			print form.errors
+	#else: # was a GET
+	return render(request, 'emo/index.html')
 
-	return HttpResponse('This will be the EMO homepage')
 
+def department(request, abbr):
+	dep_list = Department.objects.filter(abbr=abbr)
+	if dep_list: # valid department
+		dep = dep_list[0]
+		num_students = dep.num_students
+		name = dep.name
+	#else: # not a valid department
 
-def department(request):
+	return HttpResponse('The department you searched was ' + abbr)
