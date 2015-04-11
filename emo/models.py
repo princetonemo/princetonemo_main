@@ -1,7 +1,7 @@
 from django.db import models
 
 class Department(models.Model):
-	name = models.CharField(max_length=50, blank=True)
+	name = models.CharField(max_length=60, blank=True)
 	abbr = models.CharField(max_length=3)
 
 	angry_avg = models.FloatField(default=0., blank=True)
