@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from emo.models import UserProfile, Department
+from emo.forms import DepartmentSearchForm
 
 # Create your views here.
 def index(request):
@@ -14,7 +15,9 @@ def index(request):
 		else:
 			print form.errors
 	#else: # was a GET
-	return render(request, 'emo/index.html')
+	form = DepartmentSearchForm()
+	context_dict = {'form': form}
+	return render(request, 'emo/index.html', context_dict)
 
 
 def department(request, abbr):
