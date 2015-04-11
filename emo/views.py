@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from emo.models import UserProfile, Department
 from emo.forms import DepartmentSearchForm
 
@@ -11,7 +11,7 @@ def index(request):
 		if form.is_valid():
 			data = form.cleaned_data
 			print(data['query'])
-			return department(request, data)
+			return HttpResponseRedirect('/emo/' + data['query'])
 		else:
 			print form.errors
 	#else: # was a GET
@@ -21,11 +21,11 @@ def index(request):
 
 
 def department(request, abbr):
-	dep_list = Department.objects.filter(abbr=abbr)
-	if dep_list: # valid department
-		dep = dep_list[0]
-		num_students = dep.num_students
-		name = dep.name
+	#dep_list = Department.objects.filter(abbr=abbr)
+	#if dep_list: # valid department
+	#	dep = dep_list[0]
+	#	num_students = dep.num_students
+	#	name = dep.name
 	#else: # not a valid department
 
-	return HttpResponse('The department you searched was ' + abbr)
+	return HttpResponse('The department you searched was ' + str(abbr))
