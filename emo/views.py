@@ -21,11 +21,13 @@ def index(request):
 
 
 def department(request, abbr):
-	#dep_list = Department.objects.filter(abbr=abbr)
-	#if dep_list: # valid department
-	#	dep = dep_list[0]
-	#	num_students = dep.num_students
-	#	name = dep.name
-	#else: # not a valid department
 
-	return HttpResponse('The department you searched was ' + str(abbr))
+	dep_list = Department.objects.filter(abbr=abbr)
+	if dep_list: # valid department
+		dep = dep_list[0]
+		num_students = dep.num_students
+		name = dep.name
+		return HttpResponse('The department you searched was ' + str(abbr))
+	else: # not a valid department
+
+		return HttpResponse('Sorry, the department you searched was not found' + str(abbr))
