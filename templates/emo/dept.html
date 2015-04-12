@@ -69,9 +69,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Sorry, we did not find a department called {{ abbr }} </h2>
-                    <p class="lead"> You can enter another search. </p>
+                    <h2>Face-Data Software for {{ dep.name }} </h2>
+                    <p class="lead"> Angry Rating {{angry}} </p>
+                    <p class="lead"> Sad Rating {{dep.sad_avg}} </p>
+                    <p class="lead"> Neutral Rating {{dep.neutral_avg}} </p>
+                    <p class="lead"> Surprise Rating {{dep.surprise_avg}} </p>
+                    <p class="lead"> Fear Rating {{dep.fear_avg}} </p>
+                    <p class="lead"> Happy Rating {{dep.happy_avg}} </p>
                         <form role="form" id="departmentSearchForm" method="POST" action="/emo/">
+                        You can enter another search. 
                         Enter a 3-letter department:
                         <br>
                         <div id="emoformfield">
