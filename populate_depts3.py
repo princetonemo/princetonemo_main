@@ -17,7 +17,7 @@ django.setup()
 
 
 def populate():
-	list_of_depts = ['Anthropology', 'Architecture', 'Art and Archaeology', 'Astrophysical Sciences', 'Chemical and Biological Engineering', 'Chemistry', 'Civil and Environmental Engineering', 'Classics', 'Comparative Literature', 'Computer Science', 'East Asian Studies', 'Ecology and Evolutionary Biology', 'Economics', 'Electrical Engineering', 'English', 'French and Italian', 'Geosciences', 'German', 'History', 'Mathematics', 'Mechanical and Aerospace Engineering', 'Molecular Biology', 'Music', 'Near Eastern Studies', 'Operations Research and Financial Engineering', 'Philosophy', 'Physics', 'Politics', 'Psychology', 'Religion', 'Slavic Languages and Literatures', 'Sociology', 'Woodrow Wilson School of Public and International Affairs'];
+	list_of_depts = ['Anthropology', 'Architecture', 'Art and Archaeology', 'Astrophysical Sciences', 'Chemical and Biological Engineering', 'Chemistry', 'Civil and Environmental Engineering', 'Classics', 'Comparative Literature', 'Computer Science', 'East Asian Studies', 'Ecology and Evolutionary Biology', 'Economics', 'Electrical Engineering', 'English', 'French and Italian', 'Geosciences', 'German', 'History', 'Mathematics', 'Mechanical and Aerospace Engineering', 'Molecular Biology', 'Music', 'Near Eastern Studies', 'Operations Research and Financial Engineering', 'Philosophy', 'Physics', 'Politics', 'Psychology', 'Religion', 'Slavic Languages and Literatures', 'Sociology', 'Spanish and Potuguese', 'Woodrow Wilson School of Public and International Affairs'];
 	list_of_acronyms = ['ANT', 'ARC', 'ART', 'AST', 'CBE', 'CHM', 'CEE', 'CLA', 'COM', 'COS', 'EAS', 'EEB', 'ECO', 'ELE', 'ENG', 'FRE', 'GEO', 'GER', 'HIS', 'MAT', 'MAE', 'MOL', 'MUS', 'NES', 'ORF', 'PHI', 'PHY', 'POL', 'PSY', 'REL', 'SLA', 'SOC', 'SPA', 'WWS'];
 	list_of_nums = [34, 26, 30, 16, 135, 72, 78, 25, 39, 324, 24, 108, 235, 104, 98, 11, 27, 11, 174, 69, 141, 121, 18, 22, 199, 53, 46, 143, 147, 27, 7, 65, 8, 315];
 	for i in range(0, len(list_of_depts)):
@@ -32,7 +32,11 @@ def add_dept(name, abbr, num_students):
 
 def score():
 	#all departments
-	list_of_acronyms = ['ANT', 'ARC', 'ART', 'AST', 'CBE', 'CHM', 'CEE', 'CLA', 'COM', 'COS', 'EAS', 'EEB', 'ECO', 'ELE', 'ENG', 'FRE', 'GEO', 'GER', 'HIS', 'MAT', 'MAE', 'MOL', 'MUS', 'NES', 'ORF', 'PHI', 'PHY', 'POL', 'PSY', 'REL', 'SLA', 'SOC', 'SPA', 'WWS'];
+	#list_of_acronyms = ['ANT', 'ARC', 'ART', 'AST', 'CBE', 'CHM', 'CEE', 'CLA', 'COM', 'COS', 'EAS', 'EEB', 'ECO', 'ELE', 'ENG', 'FRE', 'GEO', 'GER', 'HIS', 'MAT', 'MAE', 'MOL', 'MUS', 'NES', 'ORF', 'PHI', 'PHY', 'POL', 'PSY', 'REL', 'SLA', 'SOC', 'SPA', 'WWS'];
+	#list_of_acronyms = ['ANT', 'ARC', 'ART', 'AST', 'CBE', 'CHM', 'CEE'];
+	#list_of_acronyms = ['CLA', 'COM', 'COS', 'EAS', 'EEB', 'ECO', 'ELE', 'ENG', 'FRE', 'GEO', 'GER'];
+	#list_of_acronyms = ['HIS', 'MAT', 'MAE', 'MOL', 'MUS', 'NES', 'ORF', 'PHI'];
+	list_of_acronyms = ['PHY', 'POL', 'PSY', 'REL', 'SLA', 'SOC', 'SPA', 'WWS'];
 	#go through all folders of departments
 	for department in list_of_acronyms:
 		directory = "/Users/Valerie/Documents/HackPrinceton/" + department;
@@ -42,6 +46,7 @@ def score():
 		count = 0;
 		for photo in photos:
 			count += 1;
+			print count;
 			path = directory + "/" + photo;
 			pixel_array = skimage.io.imread(path).tolist()
 			# print(fer(pixel_array))
@@ -100,6 +105,7 @@ def score():
 			new_happy_avg = (old_happy_avg * (count - 1) + happy)/count;
 			dep.happy_avg = new_happy_avg;
 			dep.save();
+			print department;
 
 
 def add_user(num_scanned, angry_new, sad_new, neutral_new, surprise_new, fear_new, happy_new, angry_avg, sad_avg, neutral_avg, surprise_avg, fear_avg, happy_avg, department):
