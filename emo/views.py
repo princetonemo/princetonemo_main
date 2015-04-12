@@ -37,7 +37,15 @@ def department(request, abbr):
 		dep_list = Department.objects.filter(abbr=abbr)
 		if dep_list: # valid department
 			dep = dep_list[0]
-			context_dict = {'dep': dep, 'form': form}
+			angry = str(int(dep.angry_avg * 100)) + "%"
+			happy = str(int(dep.happy_avg * 100)) + "%"
+			sad = str(int(dep.sad_avg * 100)) + "%"
+			neutral = str(int(dep.neutral_avg * 100)) + "%"
+			fear = str(int(dep.fear_avg * 100)) + "%"
+			surprise = str(int(dep.surprise_avg * 100)) + "%"
+
+			context_dict = {'dep': dep, 'form': form, 'angry': angry, 'happy': happy, 'sad': sad, 
+							'neutral': neutral, 'fear': fear, 'surprise': surprise}
 			return render(request, 'emo/dept.html', context_dict)
 		else: # not a valid department
 			context_dict = {'abbr': abbr, 'form': form}
